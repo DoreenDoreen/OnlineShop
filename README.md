@@ -1,2 +1,2 @@
 # OnlineShop
- eCommerce platform
+ This is an eCommerce platform.
