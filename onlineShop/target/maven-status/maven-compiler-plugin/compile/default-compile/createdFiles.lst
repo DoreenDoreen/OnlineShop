@@ -7,6 +7,5 @@ onlineShop\entity\Cart.class
 onlineShop\entity\CartItem.class
 onlineShop\Application.class
 onlineShop\ApplicationConfig.class
-com\lin\onlineShop\HelloServlet.class
 onlineShop\entity\Product.class
 onlineShop\entity\User.class
