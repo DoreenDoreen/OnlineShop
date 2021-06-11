@@ -36,18 +36,23 @@ public class CustomerDao {
         }
     }
 
-    public Customer getCustomerByUserName(String userName) {
+    public Customer getCustomer(String email) {
         User user = null;
-        try (Session session = sessionFactory.openSession()) {
-            user = session.get(User.class, userName);
+        Session session = null;
+        try {
+            session = sessionFactory.openSession();
+            user = session.get(User.class, email);
         } catch (Exception ex) {
             ex.printStackTrace();
+        } finally {
+            if (session != null) {
+                session.close();
+            }
         }
 
         if (user != null) {
             return user.getCustomer();
         }
-
         return null;
     }
 
