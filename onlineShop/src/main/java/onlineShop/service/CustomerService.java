@@ -25,4 +25,6 @@ public class CustomerService {
         return customerDao.getCustomer(email);
     }
 
+    // could add more service logic here if more business services required
+
 }
