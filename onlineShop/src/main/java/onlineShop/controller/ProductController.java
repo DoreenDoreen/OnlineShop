@@ -33,19 +33,31 @@ public class ProductController {
 
     @RequestMapping(value = "/admin/product/addProduct", method = RequestMethod.POST)
     public String addProduct(@ModelAttribute Product product) {
-
+        productService.addProduct(product);
+        return "redirect:/getAllProducts";
     }
 
-    public String deleteProduct() {
-
+    @RequestMapping(value = "/admin/delete/{productId}")
+    public String deleteProduct(@PathVariable(value = "productId") int productId) {
+        productService.deleteProduct(productId);
+        return "redirect:/getAllProducts";
     }
 
-    public ModelAndView getEditForm() {
-
+    @RequestMapping(value = "/admin/product/editProduct/{productId}", method = RequestMethod.GET)
+    public ModelAndView getEditForm(@PathVariable(value = "productId") int productId) {
+        Product product = productService.getProductById(productId);
+        ModelAndView modelAndView = new ModelAndView();
+        modelAndView.setViewName("editProduct");
+        modelAndView.addObject("editProductObj", product);
+        modelAndView.addObject("productId", productId);
+        return modelAndView;
     }
 
-    public String editProduct() {
-
+    @RequestMapping(value = "/admin/product/editProduct/{productId}", method = RequestMethod.POST)
+    public String editProduct(@ModelAttribute Product product, @PathVariable(value = "productId") int productId ) {
+        product.setId(productId);
+        productService.updateProduct(product);
+        return "redirect:/getAllProducts";
     }
 
 }
