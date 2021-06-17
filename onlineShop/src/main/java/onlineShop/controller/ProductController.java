@@ -31,6 +31,7 @@ public class ProductController {
         return new ModelAndView("productPage", "product", product);
     }
 
+    @RequestMapping(value = "/admin/product/addProduct", method = RequestMethod.POST)
     public String addProduct(@ModelAttribute Product product) {
 
     }
