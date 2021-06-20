@@ -56,4 +56,11 @@ public class CartItemDao {
         }
     }
 
+    public void removeAllCartItems(Cart cart) {
+        List<CartItem> cartItems = cart.getCartItem();
+        for (CartItem cartItem : cartItems) {
+            removeCartItem(cartItem.getId());
+        }
+    }
+
 }
