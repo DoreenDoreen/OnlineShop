@@ -1,26 +1,24 @@
 package onlineShop.controller;
 
-import jdk.nashorn.internal.ir.RuntimeNode;
-import onlineShop.dao.CartItemDao;
 import onlineShop.entity.Cart;
 import onlineShop.entity.CartItem;
 import onlineShop.entity.Customer;
 import onlineShop.entity.Product;
 import onlineShop.service.CartItemService;
+import onlineShop.service.CartService;
 import onlineShop.service.CustomerService;
 import onlineShop.service.ProductService;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
-import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseStatus;
 
-import java.security.Security;
 import java.util.List;
 
 @Controller
@@ -40,7 +38,7 @@ public class CartItemController {
 
     @RequestMapping("/cart/add/{productId}")
     @ResponseStatus(value = HttpStatus.CREATED)
-    public void addCartItem(@PathVariable(value = "productId") int product) {
+    public void addCartItem(@PathVariable(value = "productId") int productId) {
         Authentication loggedInUser = SecurityContextHolder.getContext().getAuthentication();
         String username = loggedInUser.getName();
         Customer customer = customerService.getCustomer(username);
@@ -78,7 +76,7 @@ public class CartItemController {
     @ResponseStatus(value = HttpStatus.NO_CONTENT)
     public void removeAllCartItems(@PathVariable("cartId") int cartId) {
         Cart cart = cartService.getCartById(cartId);
-        cartItemService.romoveAllCartItems(cart);
+        cartItemService.removeAllCartItems(cart);
     }
 
 
