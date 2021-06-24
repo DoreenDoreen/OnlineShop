@@ -18,8 +18,8 @@ public class CustomerDao {
         Authorities authorities = new Authorities();
         authorities.setAuthorities("ROLE_USER");
         authorities.setEmailId(customer.getUser().getEmailId());
-        Session session = null;
 
+        Session session = null;
         try {
             session = sessionFactory.openSession();
             session.beginTransaction();
