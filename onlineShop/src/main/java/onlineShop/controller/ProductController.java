@@ -5,6 +5,7 @@ import onlineShop.entity.Product;
 import onlineShop.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -31,10 +32,24 @@ public class ProductController {
         return new ModelAndView("productPage", "product", product);
     }
 
-    @RequestMapping(value = "/admin/product/addProduct", method = RequestMethod.POST)
-    public String addProduct(@ModelAttribute Product product) {
+    @RequestMapping(value = "/admin/peoduct/addProduct", method = RequestMethod.GET)
+    public ModelAndView getProductForm() {
+        return new ModelAndView("addProduct", "productForm", new Product());
+    }
+
+//    @RequestMapping(value = "/admin/product/addProduct", method = RequestMethod.POST)
+//    public String addProduct(@ModelAttribute Product product) {
+//        productService.addProduct(product);
+//        return "redirect:/getAllProducts";
+//    }
+
+
+    public String addProduct(@ModelAttribute Product product, BindingResult result) {
+        if (result.hasErrors()) {
+            return "addProduct";
+        }
         productService.addProduct(product);
-        return "redirect:/getAllProducts";
+        return "redirct:/getAllProducts";
     }
 
     @RequestMapping(value = "/admin/delete/{productId}")
@@ -58,6 +73,6 @@ public class ProductController {
         product.setId(productId);
         productService.updateProduct(product);
         return "redirect:/getAllProducts";
-    }
+    } 
 
 }
