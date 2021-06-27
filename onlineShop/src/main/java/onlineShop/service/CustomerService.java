@@ -14,7 +14,6 @@ public class CustomerService {
 
     public void addCustomer(Customer customer) {
         customer.getUser().setEnabled(true);
-
         Cart cart = new Cart();
         customer.setCart(cart);
 
