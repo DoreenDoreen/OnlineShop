@@ -73,6 +73,6 @@ public class ProductController {
         product.setId(productId);
         productService.updateProduct(product);
         return "redirect:/getAllProducts";
-    } 
+    }
 
 }

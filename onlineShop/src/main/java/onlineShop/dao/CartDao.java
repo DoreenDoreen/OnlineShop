@@ -20,9 +20,9 @@ public class CartDao {
     public Cart getCartById(int cartId) {
         Cart cart = null;
         try (Session session = sessionFactory.openSession()) {
-            session.getTransaction();
+            session.beginTransaction();
             cart = (Cart) session.get(Cart.class, cartId);
-            session.getTransaction();
+            session.getTransaction().commit();
         } catch (Exception e) {
             e.printStackTrace();
         }
