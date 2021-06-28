@@ -17,7 +17,6 @@ public class RegistrationController {
 
     @RequestMapping(value = "/customer/registration", method = RequestMethod.GET)
     public ModelAndView getRegistrationForm() {
-
         return new ModelAndView("register", "customer", new Customer());
     }
 
