@@ -89,9 +89,7 @@ public class Customer implements Serializable {
         this.user = user;
     }
 
-    public Cart getCart() {
-        return cart;
-    }
+    public Cart getCart() { return cart; }
 
     public void setCart(Cart cart) {
         this.cart = cart;
